@@ -3,7 +3,7 @@ composer.json
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/dam1r89/laravel-proto-generator"
+            "url": "https://github.com/ivanmijatovic89/laravel-proto-generator"
         }
     ],
     "require-dev": {
