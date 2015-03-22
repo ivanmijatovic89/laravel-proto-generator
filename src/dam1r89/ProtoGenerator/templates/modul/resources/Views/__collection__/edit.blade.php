@@ -1,4 +1,4 @@
-@extends('proto.master')
+@extends('__$item__::proto.master')
 
 @section('content')
 

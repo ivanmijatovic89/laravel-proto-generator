@@ -1,4 +1,4 @@
-@extends('proto.master')
+@extends('__$item__::proto.master')
 
 @section('content')
     <h1>All __ ucfirst($collection)__ </h1>

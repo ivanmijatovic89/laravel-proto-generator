@@ -1,4 +1,4 @@
-@extends('proto.master')
+@extends('__$item__::proto.master')
 
 @section('content')
     <h1>Create New __ ucfirst($singleItem)__ </h1>
