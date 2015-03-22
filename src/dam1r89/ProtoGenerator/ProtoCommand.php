@@ -24,7 +24,7 @@ class ProtoCommand extends Command
         $parser =
             new RelationsContextDataDecorator(
             new TranslatableContextDataDecorator(
-            new ContextDataParser($this->argument('model'), $this->option('fields') )));
+            new ContextDataParser($this->argument('model'), $this->option('fields'), $this->option('output') )));
 
 
 
@@ -47,20 +47,27 @@ class ProtoCommand extends Command
         foreach ($files as $file) {
 
 
-            $this->createDir($file['dest']);
 
-            $source = file_get_contents($file['src']);
+                $this->createDir($file['dest']);
 
-            if (!file_exists($file['dest']) || ( $this->option('override')  ||  file_exists($file['dest']) && $this->confirm("File {$file['dest']} exists, to you want to overwrite?") ) ) {
+                $source = file_get_contents($file['src']);
 
-                file_put_contents($file['dest'], $tp->procces($source, $parser->getContextData()));
-                $this->info("Generating {$file['dest']}");
+                if (!file_exists($file['dest']) || ( $this->option('override')  ||  file_exists($file['dest']) && $this->confirm("File {$file['dest']} exists, to you want to overwrite?") ) ) {
 
-            }
+                    file_put_contents($file['dest'], $tp->procces($source, $parser->getContextData()));
+                    $this->info("Generating {$file['dest']}");
+
+                }
 
         }
+        if($this->option('template') == 'modul'){
+            $this->info('Generating in module '.ucfirst($this->argument('model')).' folder - routes.php');
+            $info = 'to migrate type command : php artisan module:migrate '.$this->argument('model');
+        }else{
+            // this is for standard
+            $info = $compiler->compile("add to the routes:\n\tRoute::model('__collection__', 'App\Models\__model__');\n\tRoute::resource('__collection__', '__controller__Controller');\n\n");
+        }
 
-        $info = $compiler->compile("add to the routes:\n\tRoute::model('__collection__', 'App\Models\__model__');\n\tRoute::resource('__collection__', '__controller__Controller');\n\n");
 
         $this->info($info);
 
@@ -83,16 +90,19 @@ class ProtoCommand extends Command
         return array(
             array('model', InputArgument::REQUIRED, 'Model for which you want to generate prototype model, controller, views and migration.'),
         );
+
     }
 
     protected function getOptions()
     {
         return array(
-            array('fields'  , 'f', InputOption::VALUE_OPTIONAL, 'Model properties separated by comma (id field is included). Example --fields="name,category,test"', null),
-            array('template', 't', InputOption::VALUE_OPTIONAL, 'Template path under the templates folder of source file', 'standard'),
-            array('output'  , 'o', InputOption::VALUE_OPTIONAL, 'Output folder where file/folder structure will be generated, default is app', ''),
-            array('override', 'r', InputOption::VALUE_NONE, 'Automatically override all')
+            array('fields'   , 'f', InputOption::VALUE_OPTIONAL, 'Model properties separated by comma (id field is included). Example --fields="name,category,test"', null),
+            array('template' , 't', InputOption::VALUE_OPTIONAL, 'Template path under the templates folder of source file', 'standard'),
+            array('output'   , 'o', InputOption::VALUE_OPTIONAL, 'Output folder where file/folder structure will be generated, default is app', ''),
+            array('override' , 'r', InputOption::VALUE_NONE, 'Automatically override all')
+
         );
+        //array('namespace', 'n', InputOption::VALUE_OPTIONAL, 'Template path under the templates folder of source file', '\\App'),
     }
 
 }

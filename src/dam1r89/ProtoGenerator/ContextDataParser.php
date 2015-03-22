@@ -47,12 +47,21 @@ class Field{
 class ContextDataParser implements ContextDataParserInterface{
 
 
-    private $item, $fieldsString;
+    private $item, $fieldsString , $output;
 
-    function __construct($item, $fields)
+    function __construct($item, $fields, $output)
     {
         $this->item = $item;
         $this->fieldsString = $fields;
+        if(isset($output) AND !empty($output)){
+
+            $this->output = str_replace('/','\\',$output);
+        }else{
+            $this->output = 'App';
+        }
+
+
+
     }
 
     public function getContextData(){
@@ -66,6 +75,9 @@ class ContextDataParser implements ContextDataParserInterface{
         $item = str_singular($collection);
         $model = Ucfirst($item);
         $migrationDate = $this->getDatePrefix();
+
+
+        $namespace = $this->output;
 
         $fields = [];
         if ($this->fieldsString) {
@@ -81,7 +93,7 @@ class ContextDataParser implements ContextDataParserInterface{
 
         }
 
-        return compact('table', 'item', 'singleItem', 'model', 'controller', 'collection' ,  'migrationDate', 'fields');
+        return compact('table', 'item', 'singleItem', 'model', 'controller', 'collection' , 'namespace', 'migrationDate', 'fields');
     }
 
     protected function getDatePrefix()
