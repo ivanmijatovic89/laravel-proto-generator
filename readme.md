@@ -24,4 +24,4 @@ add to `app/config/app.php`
 *-t* template folder - default `standard`  
 *-f* fields  
 *-o* output folder - default base
-test
+
