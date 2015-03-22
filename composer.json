@@ -1,5 +1,5 @@
 {
-    "name": "dam1r89/proto-generator",
+    "name": "ivanmijatovic89/laravel-proto-generator",
     "description": "Laravel 5 prototyping tool. Creates files based on the templates. It comes with template for views, model, migration and controllers.",
     "keywords": ["laravel", "prototyping", "scaffold", "generator", "command"],
     "authors": [{
