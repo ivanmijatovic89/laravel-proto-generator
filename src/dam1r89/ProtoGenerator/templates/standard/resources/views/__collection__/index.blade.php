@@ -3,7 +3,7 @@
 @section('content')
     <h1>All __ ucfirst($collection)__ </h1>
         <p>
-            {!! link_to_route('__$collection__.create', 'Create new __$collection__' , [] , array('class' => 'btn btn-info','style'=>'color:white')) !!}
+            {{--{!! link_to_route('__$collection__.create', 'Create new __$collection__' , [] , array('class' => 'btn btn-info','style'=>'color:white')) !!}--}}
         </p>
     @if(count($__$collection__))
         <table class="table  table-hover">
@@ -38,7 +38,7 @@
                                  <td>{{$__$item__->__$field__}}</td>
                             __!endif;__
                     __!endforeach;__
-                      <td>{!! link_to_route('__$collection__.edit', 'Edit', array($__$item__->id), array('class' => 'btn btn-info','style'=>'color:white')) !!}</td>
+                      {{--<td>{!! link_to_route('__$collection__.edit', 'Edit', array($__$item__->id), array('class' => 'btn btn-info','style'=>'color:white')) !!}</td>--}}
                     <td>
                         {!! Form::open(array('method' => 'DELETE', 'route' => array('__$collection__.destroy', $__$item__->id))) !!}
                             {!! Form::submit('Delete', array('class' => 'btn btn-danger')) !!}

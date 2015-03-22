@@ -4,7 +4,7 @@
 
     <h1>Edit __ ucfirst($singleItem)__</h1>
         <p>
-            {!! link_to_route('__$collection__.index', 'All __$collection__' , [] , array('class' => 'btn btn-info','style'=>'color:white')) !!}
+            {{--{!! link_to_route('__$collection__.index', 'All __$collection__' , [] , array('class' => 'btn btn-info','style'=>'color:white')) !!}--}}
         </p>
 
 
