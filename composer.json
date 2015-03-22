@@ -19,5 +19,5 @@
             "dam1r89\\ProtoGenerator": "src/"
         }
     },
-    "minimum-stability": "stable"
+    "minimum-stability": "dev"
 }
