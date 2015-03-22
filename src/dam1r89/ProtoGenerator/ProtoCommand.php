@@ -27,7 +27,6 @@ class ProtoCommand extends Command
             new ContextDataParser($this->argument('model'), $this->option('fields'), $this->option('output') )));
 
 
-
         $compiler = $this->compiler;
         $compiler->setContextData($parser->getContextData());
 
@@ -65,7 +64,7 @@ class ProtoCommand extends Command
             $info = 'to migrate type command : php artisan module:migrate '.$this->argument('model');
         }else{
             // this is for standard
-            $info = $compiler->compile("add to the routes:\n\tRoute::model('__collection__', 'App\Models\__model__');\n\tRoute::resource('__collection__', '__controller__Controller');\n\n");
+            $info = $compiler->compile("add to the routes:\n\tRoute::model('__collection__', '".$parser->getContextData()['namespace']."\Models\__model__');\n\tRoute::resource('__collection__', '__controller__Controller');\n\n");
         }
 
 

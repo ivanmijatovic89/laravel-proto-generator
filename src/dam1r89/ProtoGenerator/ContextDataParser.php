@@ -48,6 +48,7 @@ class ContextDataParser implements ContextDataParserInterface{
 
 
     private $item, $fieldsString , $output;
+    public $namespace;
 
     function __construct($item, $fields, $output)
     {
@@ -55,13 +56,21 @@ class ContextDataParser implements ContextDataParserInterface{
         $this->fieldsString = $fields;
         if(isset($output) AND !empty($output)){
 
-            $this->output = str_replace('/','\\',$output);
+//            $this->output = str_replace('/','\\',$output);
+            $this->namespace = str_replace('/','\\',$output);
         }else{
+
+            $this->namespace = 'App';
             $this->output = 'App';
         }
 
 
 
+    }
+
+    public function getNamespace()
+    {
+        return $this->namespace;
     }
 
     public function getContextData(){
@@ -77,7 +86,7 @@ class ContextDataParser implements ContextDataParserInterface{
         $migrationDate = $this->getDatePrefix();
 
 
-        $namespace = $this->output;
+        $namespace = $this->namespace;
 
         $fields = [];
         if ($this->fieldsString) {
@@ -92,6 +101,7 @@ class ContextDataParser implements ContextDataParserInterface{
 
 
         }
+
 
         return compact('table', 'item', 'singleItem', 'model', 'controller', 'collection' , 'namespace', 'migrationDate', 'fields');
     }
