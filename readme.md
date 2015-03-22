@@ -23,4 +23,5 @@ add to `app/config/app.php`
 *-r* replace files withouth asking  
 *-t* template folder - default `standard`  
 *-f* fields  
-*-o* output folder - default base  
+*-o* output folder - default base
+test
