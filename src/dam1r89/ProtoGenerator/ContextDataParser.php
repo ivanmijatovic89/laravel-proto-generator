@@ -54,24 +54,14 @@ class ContextDataParser implements ContextDataParserInterface{
     {
         $this->item = $item;
         $this->fieldsString = $fields;
-        if(isset($output) AND !empty($output)){
 
-//            $this->output = str_replace('/','\\',$output);
+        if(isset($output) AND !empty($output)){
             $this->namespace = str_replace('/','\\',$output);
         }else{
-
             $this->namespace = 'App';
-            $this->output = 'App';
         }
-
-
-
     }
 
-    public function getNamespace()
-    {
-        return $this->namespace;
-    }
 
     public function getContextData(){
 
