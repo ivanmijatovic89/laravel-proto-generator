@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class __seeder__ extends Seeder {
+class __$controller__TableSeeder extends Seeder {
 
     public function run()
     {
