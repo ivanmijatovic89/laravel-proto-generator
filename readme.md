@@ -7,7 +7,7 @@ composer.json
         }
     ],
     "require-dev": {
-        "dam1r89/proto-generator": "2.0.*"
+        "dam1r89/proto-generator": "dev-master"
     },
 
 add to `app/config/app.php`
