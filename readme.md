@@ -12,7 +12,19 @@ composer.json
 
 add to `app/config/app.php`
 
-        'dam1r89\ProtoGenerator\ProtoGeneratorServiceProvider'
+	'providers' => [
+	    ...
+        'dam1r89\ProtoGenerator\ProtoGeneratorServiceProvider',
+        'Illuminate\Html\HtmlServiceProvider',
+    ]
+
+    'aliases' =>
+    [
+        ...
+        'Form' => 'Illuminate\Html\FormFacade',
+        'Html' => 'Illuminate\Html\HtmlFacade',
+    ]
+
 
 ##Example
 
